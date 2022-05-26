@@ -35,11 +35,13 @@ def checkout(skus: str) -> int:
                 offer_quantity, offer_price = prices[sku]["offer"]
                 if quantity >= offer_quantity:
                     match_offer_quantity = quantity//offer_quantity
-                    reminder = quantity - match_offer_quantity
+                    reminder = quantity - (match_offer_quantity*offer_quantity)
                     total_cost += (reminder * prices[sku]["price"]) + (match_offer_quantity * offer_price)
+                    print(f"sku: {sku}, price: {prices[sku]['price']}, match_offer_qty: {match_offer_quantity}, reminder: {reminder}")
             else:
                 total_cost += quantity * prices[sku]["price"]
 
     return total_cost
+
 
 
