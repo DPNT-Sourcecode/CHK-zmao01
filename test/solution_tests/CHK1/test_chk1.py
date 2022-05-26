@@ -13,10 +13,20 @@ class TestCheckout():
         assert checkout_solution.checkout("3qwgyh5") == -1
 
 
-    # @pytest.mark.parametrize(
-    #
-    # )
-    # def test_checkout_happy(self, skus: str, expected: int):
-    #     pass
+    @pytest.mark.parametrize(
+        "skus,expected", [
+            ("CCCCC", 100),
+            ("CCCCD", 95),
+            ("A", 50),
+            ("AAA", 130),
+            ("AAAA", 180),
+            ("AAAAB", 220),
+            ("BBA", 95),
+            ("BC", 50),
+        ]
+    )
+    def test_checkout_happy(self, skus: str, expected: int):
+        assert checkout_solution.checkout(skus) == expected
+
 
 
