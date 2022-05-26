@@ -8,11 +8,15 @@
 # +------+-------+----------------+
 
 prices = {
-    "A": {"price": 50}
+    "A": {"price": 50, "offer": (3, 130)},
+    "B": {"price": 30, "offer": (2, 45)},
+    "C": {"price": 20, "offer": None},
+    "D": {"price": 15, "offer": None},
 }
 
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
     raise NotImplementedError()
+
 
