@@ -8,13 +8,6 @@
 # +------+-------+----------------+
 import re
 
-prices = {
-    "A": {"price": 50, "offer": (3, 130)},
-    "B": {"price": 30, "offer": (2, 45)},
-    "C": {"price": 20, "offer": None},
-    "D": {"price": 15, "offer": None},
-}
-
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus: str) -> int:
@@ -22,10 +15,25 @@ def checkout(skus: str) -> int:
     sku: str, list of sku, count is given by amount of letters
 
     """
+
+    # this would usually come from a db or similar
+    prices = {
+        "A": {"price": 50, "offer": (3, 130)},
+        "B": {"price": 30, "offer": (2, 45)},
+        "C": {"price": 20, "offer": None},
+        "D": {"price": 15, "offer": None},
+    }
+
+    valid_skus = ["A", "B", "C", "D"]
     if not re.match(r"^[A,B,C,D]*$"):
         return -1
+    total_cost = 0
+    for sku in valid_skus:
+        quantity = skus.count(sku)
+        if quantity > 0:
+            if prices[sku]['offer']:
+                
 
-    
 
 
 
