@@ -17,8 +17,15 @@ prices = {
 
 # noinspection PyUnusedLocal
 # skus = unicode string
-def checkout(skus):
-    re.compile(r"[A,B,C,D]*")
+def checkout(skus: str) -> int:
+    """
+    sku: str, list of sku, count is given by amount of letters
+
+    """
+    if not re.match(r"^[A,B,C,D]*$"):
+        return -1
+
+    
 
 
 
