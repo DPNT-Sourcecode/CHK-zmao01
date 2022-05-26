@@ -6,6 +6,7 @@
 # | C    | 20    |                |
 # | D    | 15    |                |
 # +------+-------+----------------+
+from random import randint
 
 prices = {
     "A": {"price": 50, "offer": (3, 130)},
@@ -17,6 +18,7 @@ prices = {
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    raise NotImplementedError()
+    randint(100,1000)
+
 
 
