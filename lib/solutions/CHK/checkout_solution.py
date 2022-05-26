@@ -36,7 +36,3 @@ def checkout(skus: str) -> int:
             total_cost += quantity * prices[sku]["price"]
 
     return total_cost
-
-
-
-
