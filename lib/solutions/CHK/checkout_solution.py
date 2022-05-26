@@ -22,13 +22,13 @@ def checkout(skus: str) -> int:
     # this would usually come from a db or similar
     prices = {
         "A": {"price": 50, "offers": [(5, 200, "discount"), (3, 130, "discount")]},
-        "E": {"price": 40, "offers": [(2, (1, "B"), "free_item")]},
         "B": {"price": 30, "offers": [(2, 45, "discount")]},
-        "C": {"price": 20, "offers": None},
-        "D": {"price": 15, "offers": None},
+        "C": {"price": 20, "offers": []},
+        "D": {"price": 15, "offers": []},
+        "E": {"price": 40, "offers": [(2, (1, "B"), "free_item")]},
     }
 
-    valid_skus = ["A", "B", "C", "D"]
+    valid_skus = ["A", "E", "B", "C", "D"]
     if not re.match(r"^[A,B,C,D]*$", skus):
         return -1
     total_cost = 0
@@ -38,7 +38,7 @@ def checkout(skus: str) -> int:
         if quantity > 0:
             if sku in free_items:
                 quantity -= free_items[sku]
-            reminder = 0
+            to_process = quantity
             for offer in prices[sku]["offers"]:
                 print(offer)
                 offer_quantity, offer_price, offer_type = offer
@@ -46,15 +46,15 @@ def checkout(skus: str) -> int:
                 if quantity >= offer_quantity:
                     if offer_type == "discount":
                         match_offer_quantity = quantity // offer_quantity
-                        reminder = quantity - (match_offer_quantity * offer_quantity)
+                        to_process = quantity - (match_offer_quantity * offer_quantity)
                         total_cost += (match_offer_quantity * offer_price)
                         continue
                     elif offer_type == "free_item":
                         free_item, free_item_quantity = offer_quantity
                         free_items[free_item] = free_item_quantity
-                        continue
-            if reminder > 0:
-                total_cost += (reminder * prices[sku]["price"])
+
+            if to_process > 0:
+                total_cost += (to_process * prices[sku]["price"])
 
             total_cost += quantity * prices[sku]["price"]
 
@@ -94,5 +94,6 @@ def checkout(skus: str) -> int:
 #             total_cost += quantity * prices[sku]["price"]
 #
 #     return total_cost
+
 
 
