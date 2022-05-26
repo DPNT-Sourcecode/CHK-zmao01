@@ -25,19 +25,23 @@ def checkout(skus: str) -> int:
         "B": {"price": 30, "offers": [(2, 45, "discount")]},
         "C": {"price": 20, "offers": []},
         "D": {"price": 15, "offers": []},
-        "E": {"price": 40, "offers": [(2, (1, "B"), "free_item")]},
+        "E": {"price": 40, "offers": [(2, ("B", 1), "free_item")]},
     }
 
     valid_skus = ["A", "E", "B", "C", "D"]
-    if not re.match(r"^[A,B,C,D]*$", skus):
+    if not re.match(r"^[A,B,C,D,E]*$", skus):
         return -1
     total_cost = 0
     free_items = {}
     for sku in valid_skus:
+        print(sku)
         quantity = skus.count(sku)
         if quantity > 0:
+            print(free_items)
             if sku in free_items:
+                print("found")
                 quantity -= free_items[sku]
+                print(quantity)
             to_process = quantity
             for offer in prices[sku]["offers"]:
                 print(offer)
@@ -51,7 +55,7 @@ def checkout(skus: str) -> int:
                         print(total_cost)
                         continue
                     elif offer_type == "free_item":
-                        free_item, free_item_quantity = offer_quantity
+                        free_item, free_item_quantity = offer_price
                         free_items[free_item] = free_item_quantity
 
             if to_process > 0:
@@ -96,6 +100,7 @@ def checkout(skus: str) -> int:
 #             total_cost += quantity * prices[sku]["price"]
 #
 #     return total_cost
+
 
 
 

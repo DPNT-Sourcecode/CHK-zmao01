@@ -28,6 +28,8 @@ class TestCheckout():
             ("BC", 50),
             ("AAB", 130),
             ("AAAB", 160),
+            ("AAAAAAAAAB", 410),
+            ("EEB", 40)
         ]
     )
     def test_checkout_happy(self, skus: str, expected: int):
@@ -54,5 +56,6 @@ class TestCheckout():
 #     )
 #     def test_checkout_happy(self, skus: str, expected: int):
 #         assert checkout_solution.checkout(skus) == expected
+
 
 
