@@ -6,8 +6,7 @@
 # | C    | 20    |                |
 # | D    | 15    |                |
 # +------+-------+----------------+
-from random import randint
-from typing import re
+import re
 
 prices = {
     "A": {"price": 50, "offer": (3, 130)},
@@ -19,7 +18,8 @@ prices = {
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    re.m()
+    re.compile(r"[A,B,C,D]*")
+
 
 
 
