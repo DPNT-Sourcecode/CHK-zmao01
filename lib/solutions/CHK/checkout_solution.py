@@ -7,6 +7,7 @@
 # | D    | 15    |                |
 # +------+-------+----------------+
 from random import randint
+from typing import re
 
 prices = {
     "A": {"price": 50, "offer": (3, 130)},
@@ -18,7 +19,8 @@ prices = {
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    randint(100,1000)
+    re.m()
+
 
 
 
