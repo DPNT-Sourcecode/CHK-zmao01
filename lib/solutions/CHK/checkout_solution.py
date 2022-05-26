@@ -34,17 +34,12 @@ def checkout(skus: str) -> int:
     total_cost = 0
     free_items = {}
     for sku in valid_skus:
-        print(sku)
         quantity = skus.count(sku)
         if quantity > 0:
-            print(free_items)
             if sku in free_items:
-                print("found")
                 quantity -= free_items[sku]
-                print(quantity)
             to_process = quantity
             for offer in prices[sku]["offers"]:
-                print(offer)
                 offer_quantity, offer_price, offer_type = offer
 
                 if to_process >= offer_quantity:
@@ -52,17 +47,14 @@ def checkout(skus: str) -> int:
                         match_offer_quantity = to_process // offer_quantity
                         to_process = to_process - (match_offer_quantity * offer_quantity)
                         total_cost += (match_offer_quantity * offer_price)
-                        print(total_cost)
                         continue
                     elif offer_type == "free_item":
+                        match_offer_quantity = to_process // offer_quantity
                         free_item, free_item_quantity = offer_price
-                        free_items[free_item] = free_item_quantity
+                        free_items[free_item] = free_item_quantity*match_offer_quantity
 
             if to_process > 0:
-                print(to_process)
                 total_cost += (to_process * prices[sku]["price"])
-                print(total_cost)
-
 
     return total_cost
 
@@ -100,6 +92,7 @@ def checkout(skus: str) -> int:
 #             total_cost += quantity * prices[sku]["price"]
 #
 #     return total_cost
+
 
 
 
