@@ -25,17 +25,21 @@ def checkout(skus: str) -> int:
     }
 
     valid_skus = ["A", "B", "C", "D"]
-    if not re.match(r"^[A,B,C,D]*$"):
+    if not re.match(r"^[A,B,C,D]*$", skus):
         return -1
     total_cost = 0
     for sku in valid_skus:
         quantity = skus.count(sku)
         if quantity > 0:
-            if prices[sku]['offer']:
-                
+            if prices[sku]["offer"]:
+                offer_quantity, offer_price = prices[sku]["offer"]
+                if quantity >= offer_quantity:
+                    match_offer_quantity = quantity//offer_quantity
+                    reminder = quantity - match_offer_quantity
+                    total_cost += (reminder * prices[sku]["price"]) + (match_offer_quantity * offer_price)
+            else:
+                total_cost += quantity * prices[sku]["price"]
 
-
-
-
+    return total_cost
 
 
