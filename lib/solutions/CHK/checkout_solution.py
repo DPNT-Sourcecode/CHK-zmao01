@@ -44,12 +44,14 @@ def checkout(skus: str) -> int:
                         f"sku: {sku}, price: {prices[sku]['price']}, quantity: {quantity}"
                         f"match_offer_qty: {match_offer_quantity}, reminder: {reminder}"
                     )
-            else:
-                print(3)
-                total_cost += quantity * prices[sku]["price"]
-                print(f"sku: {sku}, price: {prices[sku]['price']}, quantity: {quantity}")
+                    continue
+
+            print(3)
+            total_cost += quantity * prices[sku]["price"]
+            print(f"sku: {sku}, price: {prices[sku]['price']}, quantity: {quantity}")
 
     return total_cost
+
 
 
 
