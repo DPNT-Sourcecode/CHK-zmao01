@@ -101,9 +101,6 @@ def checkout(skus: str) -> int:
         amount_of_sku_matching_offers = match_group_offer_quantity * group_offer["quantity"]
         total_cost += (match_group_offer_quantity * group_offer["price"])
 
-        import ipdb
-        ipdb.set_trace()
-
         for sku, quantity in group_offers["skus_quantity"].items():
             if quantity <= amount_of_sku_matching_offers:
                 free_items[sku] = quantity
@@ -111,9 +108,6 @@ def checkout(skus: str) -> int:
             else:
                 free_items[sku] = amount_of_sku_matching_offers
                 break
-
-
-
 
     for sku in valid_skus:
         # count amount for each sku
@@ -345,5 +339,6 @@ def checkout(skus: str) -> int:
 #             total_cost += quantity * prices[sku]["price"]
 #
 #     return total_cost
+
 
 
