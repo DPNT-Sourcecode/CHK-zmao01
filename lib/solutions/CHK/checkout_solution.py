@@ -1,5 +1,6 @@
 import re
 
+# Our price table and offers:
 # +------+-------+------------------------+
 # | Item | Price | Special offers         |
 # +------+-------+------------------------+
@@ -9,6 +10,26 @@ import re
 # | D    | 15    |                        |
 # | E    | 40    | 2E get one B free      |
 # | F    | 10    | 2F get one F free      |
+# | G    | 20    |                        |
+# | H    | 10    | 5H for 45, 10H for 80  |
+# | I    | 35    |                        |
+# | J    | 60    |                        |
+# | K    | 80    | 2K for 150             |
+# | L    | 90    |                        |
+# | M    | 15    |                        |
+# | N    | 40    | 3N get one M free      |
+# | O    | 10    |                        |
+# | P    | 50    | 5P for 200             |
+# | Q    | 30    | 3Q for 80              |
+# | R    | 50    | 3R get one Q free      |
+# | S    | 30    |                        |
+# | T    | 20    |                        |
+# | U    | 40    | 3U get one U free      |
+# | V    | 50    | 2V for 90, 3V for 130  |
+# | W    | 20    |                        |
+# | X    | 90    |                        |
+# | Y    | 10    |                        |
+# | Z    | 50    |                        |
 # +------+-------+------------------------+
 
 
@@ -27,11 +48,31 @@ def checkout(skus: str) -> int:
         "C": {"price": 20, "offers": []},
         "D": {"price": 15, "offers": []},
         "E": {"price": 40, "offers": [(2, ("B", 1), "free_item")]},
-        "F": {"price": 10, "offers": [(3, 20, "discount")]}
+        "F": {"price": 10, "offers": [(3, 20, "discount")]},
+        "G": {"price": 20, "offers": []},
+        "H": {"price": 10, "offers": [(5, 45, "discount"), (10, 80, "discount")]},
+        "I": {"price": 35, "offers": []},
+        "J": {"price": 60, "offers": []},
+        "K": {"price": 80, "offers": [(2, 150, "discount")]},
+        "L": {"price": 90, "offers": []},
+        "M": {"price": 15, "offers": []},
+        "N": {"price": 40, "offers": [(3, ("M", 1), "free_item")]},
+        "O": {"price": 10, "offers": []},
+        "P": {"price": 50, "offers": [(5, 200, "discount")]},
+        "Q": {"price": 30, "offers": [(3, 80, "discount")]},
+        "R": {"price": 50, "offers": [(3, ("Q", 1), "free_item")]},
+        "S": {"price": 30, "offers": []},
+        "T": {"price": 20, "offers": []},
+        "U": {"price": 40, "offers": [(4, 120, "discount")]},
+        "V": {"price": 50, "offers": [(2, 90, "discount"), (3, 130, "discount")]},
+        "W": {"price": 20, "offers": []},
+        "X": {"price": 90, "offers": []},
+        "Y": {"price": 10, "offers": []},
+        "Z": {"price": 50, "offers": []},
     }
 
     valid_skus = ["A", "E", "B", "C", "D", "F"]
-    if not re.match(r"^[A,B,C,D,E,F]*$", skus):
+    if not re.match(r"^[A,B,C,D,E,F,G,H,I,J,K,L,N,M,O,P,R,Q,S,T,U,V,W,X,Y,Z]*$", skus):
         return -1
     total_cost = 0
     free_items = {}
@@ -59,6 +100,54 @@ def checkout(skus: str) -> int:
                 total_cost += (to_process * prices[sku]["price"])
 
     return total_cost
+
+
+
+# def checkout_3(skus: str) -> int:
+#     """
+#     sku: str, list of sku, count is given by amount of letters
+#
+#     """
+#
+#     # this would usually come from a db or similar
+#     prices = {
+#         "A": {"price": 50, "offers": [(5, 200, "discount"), (3, 130, "discount")]},
+#         "B": {"price": 30, "offers": [(2, 45, "discount")]},
+#         "C": {"price": 20, "offers": []},
+#         "D": {"price": 15, "offers": []},
+#         "E": {"price": 40, "offers": [(2, ("B", 1), "free_item")]},
+#         "F": {"price": 10, "offers": [(3, 20, "discount")]}
+#     }
+#
+#     valid_skus = ["A", "E", "B", "C", "D", "F"]
+#     if not re.match(r"^[A,B,C,D,E,F]*$", skus):
+#         return -1
+#     total_cost = 0
+#     free_items = {}
+#     for sku in valid_skus:
+#         quantity = skus.count(sku)
+#         if quantity > 0:
+#             if sku in free_items:
+#                 quantity -= free_items[sku]
+#             to_process = quantity
+#             for offer in prices[sku]["offers"]:
+#                 offer_quantity, offer_price, offer_type = offer
+#
+#                 if to_process >= offer_quantity:
+#                     if offer_type == "discount":
+#                         match_offer_quantity = to_process // offer_quantity
+#                         to_process = to_process - (match_offer_quantity * offer_quantity)
+#                         total_cost += (match_offer_quantity * offer_price)
+#                         continue
+#                     elif offer_type == "free_item":
+#                         match_offer_quantity = to_process // offer_quantity
+#                         free_item, free_item_quantity = offer_price
+#                         free_items[free_item] = free_item_quantity*match_offer_quantity
+#
+#             if to_process > 0:
+#                 total_cost += (to_process * prices[sku]["price"])
+#
+#     return total_cost
 
 
 # def checkout_2(skus: str) -> int:
@@ -140,3 +229,4 @@ def checkout(skus: str) -> int:
 #             total_cost += quantity * prices[sku]["price"]
 #
 #     return total_cost
+
