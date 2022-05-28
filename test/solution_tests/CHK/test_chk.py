@@ -60,7 +60,7 @@ class TestCheckout():
             ("SSSSAAAAASSSSS", 335),
             ("STTZ", 65),
             ("SSXS", 62),
-
+            ("ZXXXXZX", 107)
 
         ]
     )
@@ -88,6 +88,7 @@ class TestCheckout():
 #     )
 #     def test_checkout_happy(self, skus: str, expected: int):
 #         assert checkout_solution.checkout(skus) == expected
+
 
 
 
