@@ -71,8 +71,8 @@ def checkout(skus: str) -> int:
         "Z": {"price": 50, "offers": []},
     }
 
-    valid_skus = ["A", "E", "B", "C", "D", "F"]
-    if not re.match(r"^[A,B,C,D,E,F,G,H,I,J,K,L,N,M,O,P,R,Q,S,T,U,V,W,X,Y,Z]*$", skus):
+    valid_skus = ["A", "E", "B", "C", "D", "F", "G", "H", "I", "J", "K", "L", "N", "M", "O", "P", "R", "Q", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    if not re.match(r"^[A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]*$", skus):
         return -1
     total_cost = 0
     free_items = {}
@@ -229,4 +229,3 @@ def checkout(skus: str) -> int:
 #             total_cost += quantity * prices[sku]["price"]
 #
 #     return total_cost
-
