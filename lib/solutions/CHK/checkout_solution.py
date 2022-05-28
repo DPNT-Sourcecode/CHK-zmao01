@@ -88,7 +88,8 @@ def checkout(skus: str) -> int:
         "total_quantity": 0,
         "skus_quantity": {}
     }
-
+    import ipdb
+    ipdb.set_trace()
     # applying group offer before processing cart
     for sku in group_offer['skus']:
         sku_quantity = skus.count(sku)
@@ -99,7 +100,14 @@ def checkout(skus: str) -> int:
     to_process = group_offers["total_quantity"] - (match_group_offer_quantity * group_offer["quantity"])
     total_cost += (match_group_offer_quantity * group_offer["quantity"])
 
-    for sku, quantity in group_offers["skus_quantity"].items()
+    for sku, quantity in group_offers["skus_quantity"].items():
+        if quantity <= match_group_offer_quantity:
+            free_items[sku] = quantity
+            match_group_offer_quantity -= quantity
+        else:
+            free_items[sku] = quantity - match_group_offer_quantity
+            break
+
 
 
 
@@ -333,4 +341,3 @@ def checkout(skus: str) -> int:
 #             total_cost += quantity * prices[sku]["price"]
 #
 #     return total_cost
-
