@@ -54,7 +54,7 @@ def checkout(skus: str) -> int:
         "H": {"price": 10, "offers": [(10, 80, "discount"), (5, 45, "discount")]},
         "I": {"price": 35, "offers": []},
         "J": {"price": 60, "offers": []},
-        "K": {"price": 70, "offers": [(2, 150, "discount")]},
+        "K": {"price": 70, "offers": [(2, 120, "discount")]},
         "L": {"price": 90, "offers": []},
         "M": {"price": 15, "offers": []},
         "N": {"price": 40, "offers": [(3, ("M", 1), "free_item")]},
@@ -339,6 +339,7 @@ def checkout(skus: str) -> int:
 #             total_cost += quantity * prices[sku]["price"]
 #
 #     return total_cost
+
 
 
 
